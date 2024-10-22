@@ -22,13 +22,27 @@ namespace TjuvochPolis
                 Inventory.Remove(stolenItem);
                 thief.Inventory.Add(stolenItem);
                 Program.robbedCitizens++;
-                Console.WriteLine($"Tjuv rånar medborgare på {stolenItem}");
-                Thread.Sleep(2000);
+                Program.eventLog.Add($"Tjuv rånar medborgare på {stolenItem}");
+
+                // Begränsar loggen till de senaste 3 händelserna
+                if (Program.eventLog.Count > 3)
+                {
+                    Program.eventLog.RemoveAt(0);
+                }
+
+                Thread.Sleep(1000);
             }
             else if (other is Police)
             {
-                Console.WriteLine("Medborgare hälsar på polisen.");
-                Thread.Sleep(2000);
+                Program.eventLog.Add("Medborgare hälsar på polisen.");
+
+                // Begränsa loggen till de senaste 3 händelserna
+                if (Program.eventLog.Count > 3)
+                {
+                    Program.eventLog.RemoveAt(0);
+                }
+
+                Thread.Sleep(1000);
             }
         }
     }

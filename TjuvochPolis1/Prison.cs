@@ -16,7 +16,7 @@ public class Prison
     {
         Inmates.Add(thief);
         thief.X = Program.Random.Next(0, PrisonWidth);
-        thief.Y = new Random().Next(15, 15 + PrisonHeight);
+        thief.Y = Program.Random.Next(15, 15 + PrisonHeight);
         Console.WriteLine("En tjuv har blivit inlåst.");
     }
 
@@ -30,9 +30,11 @@ public class Prison
 
     public void DrawPrison()
     {
-        Console.WriteLine("\nFängelse:");
+        
         Console.WriteLine($"Antal tjuvar inlåsta: {Inmates.Count}");
         Console.WriteLine($"Antal tjuvar på fri fot: {Program.persons.OfType<Thief>().Count() - Inmates.Count}");
+        Console.WriteLine("\nFängelse:");
+
 
         for (int y = 0; y < PrisonHeight; y++)
         {

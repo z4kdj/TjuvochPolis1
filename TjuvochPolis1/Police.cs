@@ -17,8 +17,16 @@ namespace TjuvochPolis
         {
             if (other is Citizen)
             {
-                Console.WriteLine("Polisen hälsar på medborgaren.");
-                Thread.Sleep(2000);
+                Program.eventLog.Add("Polisen hälsar på medborgaren.");
+
+
+                // Begränsar loggen till de senaste 3 händelserna
+                if (Program.eventLog.Count > 3)
+                {
+                    Program.eventLog.RemoveAt(0);
+                }
+
+                Thread.Sleep(1000);
             }
         }
     }
